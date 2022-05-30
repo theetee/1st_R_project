@@ -1,0 +1,45 @@
+#create dataframe
+id <- c(1, 2, 3, 4, 5)
+name <- c("David", "John", "Marry", "Frank", "Sully")
+city <- c("London", "USA", "Tokyo", "Seoul", "Chaina")
+
+student_info <- data.frame(id, name, city)
+
+id <- c(1, 2, 3, 4, 5)
+gpa <- c(2.50, 4.00, 2.75, 3.30, 3.78)
+major <- c("Accounting", "Marketing", "Marketing", "Supplychain", "Economics" )
+
+
+student_result <- data.frame(id, gpa, major)
+
+#merge
+df_student <- merge(student_info, student_result)
+
+#subsetdataframe + calculate
+df_student[3, ]
+
+
+honor <- function(gpa){
+  if (gpa >= 4.00) {
+    return("1st honor")
+  } else if (gpa >= 3.50){
+    return("2nd honor")
+  } else if (gpa >=3.00) {
+    return("3rd honor")
+  } else {
+    return("No")
+  }
+}
+
+honor_result <- sapply(gpa, honor)
+
+new_df_student<- cbind(df_student,honor_result)
+
+View(new_df_student)
+
+min(df_student$gpa)
+max(df_student$gpa)
+mean(df_student$gpa)
+
+
+write.csv(new_df_student, "student_result.csv")
